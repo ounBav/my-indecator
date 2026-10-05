@@ -1,0 +1,26 @@
+{
+  "name": "market-desk-v1",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c green,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run start:dev --workspace @market-desk/api",
+    "dev:web": "npm run dev --workspace @market-desk/web",
+    "build": "npm run build --workspace @market-desk/api && npm run build --workspace @market-desk/web",
+    "test": "npm run test --workspace @market-desk/api && npm run test --workspace @market-desk/web",
+    "typecheck": "npm run typecheck --workspace @market-desk/api && npm run build --workspace @market-desk/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "@neon/config": "^1.8.2",
+    "@neon/env": "^1.4.7"
+  }
+}
